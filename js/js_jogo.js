@@ -9,6 +9,9 @@ function start() { // Inicio da função start()
 
     //VARIAVEIS DO JOGO
 	var jogo = {}
+
+    var velocidade=7;
+    var posicaoY = parseInt(Math.random() * 334);
 	
     var TECLA = {
         W: 87,
@@ -27,6 +30,7 @@ function start() { // Inicio da função start()
         jogo.pressionou[e.which] = false;
     });
 
+   
         
 	//Game Loop
 
@@ -35,7 +39,8 @@ function start() { // Inicio da função start()
 	function loop() {
 	
 	movefundo();
-    movejogador()
+    movejogador();
+    moveinimigo1();
 	
 	} // Fim da função loop()
 
@@ -67,9 +72,23 @@ function start() { // Inicio da função start()
         if (jogo.pressionou[TECLA.D]) {
             
             //Chama função Disparo	
-        }
+            }
     
-        } // fim da função movejogador()
+    } // fim da função movejogador()
+
+    function moveinimigo1() {
+
+        posicaoX = parseInt($("#inimigo1").css("left"));
+        $("#inimigo1").css("left",posicaoX-velocidade);
+        $("#inimigo1").css("top",posicaoY);
+            
+            if (posicaoX<=-150) {
+            posicaoY = parseInt(Math.random() * 334);
+            $("#inimigo1").css("left",850);
+            $("#inimigo1").css("top",posicaoY);
+                
+            }
+    } //Fim da função moveinimigo1()
         
 
 
